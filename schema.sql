@@ -51,7 +51,7 @@ CREATE TABLE IF NOT EXISTS `campaigns` (
 -- Table structure for table `fundings`
 --
 
-CREATE TABLE IF NOT EXISTS `fundings` (
+CREATE TABLE IF NOT EXISTS `deposits` (
 `id` bigint(20) unsigned NOT NULL,
   `campaign_id` bigint(20) unsigned NOT NULL,
   `user_id` int(10) unsigned NOT NULL,

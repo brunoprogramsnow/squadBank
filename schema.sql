@@ -128,8 +128,26 @@ CREATE TABLE IF NOT EXISTS `withdrawals` (
   `amount` decimal(19,4) NOT NULL,
   `reason` text COLLATE utf8_bin NOT NULL,
   `status` enum('approved','declined','in_progress') COLLATE utf8_bin NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin; 
 
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `outside contributors` 
+--
+
+CREATE TABLE IF NOT EXISTS `donors` (
+  `campaign_id` bigint(20) unsigned NOT NULL,
+  `first_name` varchar(20) COLLATE utf8_bin NOT NULL,
+  `last_name` varchar(20) COLLATE utf8_bin NOT NULL,
+  `email` varchar(40) COLLATE utf8_bin NOT NULL,
+  `amount` decimal(19,4) NOT NULL,
+  `processed_at` datetime NOT NULL,
+  `source` varchar(255) COLLATE utf8_bin NOT NULL,
+  `status` enum('approved','declined','in_progress') COLLATE utf8_bin NOT NULL,
+  `note` text COLLATE utf8_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 --
 -- Indexes for dumped tables
 --
@@ -143,7 +161,7 @@ ALTER TABLE `campaigns`
 --
 -- Indexes for table `fundings`
 --
-ALTER TABLE `fundings`
+ALTER TABLE `deposits`
  ADD PRIMARY KEY (`id`);
 
 --
@@ -162,6 +180,12 @@ ALTER TABLE `users`
 -- Indexes for table `withdrawals`
 --
 ALTER TABLE `withdrawals`
+ ADD PRIMARY KEY (`id`); 
+
+--
+-- Indexes for table `donors`
+--
+ALTER TABLE `donors`
  ADD PRIMARY KEY (`id`);
 
 --
@@ -176,7 +200,7 @@ MODIFY `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `fundings`
 --
-ALTER TABLE `fundings`
+ALTER TABLE `deposits`
 MODIFY `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `meta_campaigns`
@@ -192,6 +216,11 @@ MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT for table `withdrawals`
 --
 ALTER TABLE `withdrawals`
+MODIFY `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT; 
+--
+-- AUTO_INCREMENT for table `donors`
+--
+ALTER TABLE `donors`
 MODIFY `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
